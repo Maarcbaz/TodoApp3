@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+main {
+    width: min(100% - 12vw, 500px);
+    margin-inline: auto;
+}
+
+@layer components {
+    .footer {
+        @apply fixed w-full text-white flex md:gap-5 md:py-4 items-center gap-4 py-2 justify-center max-md:flex-col bottom-0 bg-black
+    }
+}
+
+@layer utilities {
+    .footertext {
+        @apply cursor-pointer text-lg hover:opacity-60 duration-300 transition-all
+    }
+
+}
