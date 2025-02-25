@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        formBG: "hsla(0, 0%, 87%, 0.3)"
+      },
+      borderColor: {
+        borderClr: "#4342424f"
+      }
+
+    },
   },
   plugins: [],
 }

@@ -2,20 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-main {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Form  */
+
+form {
     width: min(100% - 12vw, 500px);
     margin-inline: auto;
 }
 
 @layer components {
     .footer {
-        @apply fixed w-full text-white flex md:gap-5 md:py-4 items-center gap-4 py-2 justify-center max-md:flex-col bottom-0 bg-black
+        @apply fixed bottom-0 w-full text-white flex md:gap-5 md:py-4 items-center gap-4 py-2 justify-center max-md:flex-col bg-black
+    }
+
+    .header {
+        @apply bg-black py-4 md:px-8 px-6
+    }
+
+    .form {
+        @apply flex items-start justify-center
+    }
+
+    .input {
+        @apply rounded-full shadow-sm h-12 outline-none border max-sm:w-[250px] w-[320px] px-4 py-2
     }
 }
 
 @layer utilities {
     .footertext {
         @apply cursor-pointer text-lg hover:opacity-60 duration-300 transition-all
+    }
+
+    .headertext {
+        @apply text-white cursor-pointer max-sm:text-center text-3xl font-medium
     }
 
 }
