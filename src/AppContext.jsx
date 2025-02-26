@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 // C represents Create
@@ -22,7 +22,10 @@ export const Ucomplete = () => useContext(Ccomplete);
 
 const AppContext = ({ children }) => {
 	const [todo, setTodo] = useState({ name: '', done: false, id: nanoid() });
-	const [todos, setTodos] = useState([]);
+	const [todos, setTodos] = useState(() => {
+		const savedTodos = localStorage.getItem('todos');
+		return savedTodos ? JSON.parse(savedTodos) : [];
+	});
 
 	function handleTodoChange(e) {
 		setTodo({ ...todo, name: e.target.value, id: nanoid() });
@@ -46,6 +49,10 @@ const AppContext = ({ children }) => {
 		);
 		setTodos(newTodos);
 	}
+
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos));
+	}, [todos]);
 
 	return (
 		<div>
