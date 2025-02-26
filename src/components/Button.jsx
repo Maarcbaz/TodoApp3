@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Button = ({ icon }) => {
+const Button = ({ icon, func, styles }) => {
 	return (
-		<button className="bg-white p-1 rounded-full text-black">
+		<button
+			onClick={func}
+			className={`bg-black ${styles} p-1 rounded-full text-white`}>
 			{icon}
 		</button>
 	);

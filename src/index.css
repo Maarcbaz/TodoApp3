@@ -16,6 +16,12 @@ form {
     margin-inline: auto;
 }
 
+body {
+    background-image: linear-gradient(gray, rgba(0, 0, 0, 0.422), gray);
+    background-position: center;
+    background-size: cover;
+}
+
 @layer components {
     .footer {
         @apply fixed bottom-0 w-full text-white flex md:gap-5 md:py-4 items-center gap-4 py-2 justify-center max-md:flex-col bg-black
@@ -31,6 +37,10 @@ form {
 
     .input {
         @apply rounded-full shadow-sm h-12 outline-none border max-sm:w-[250px] w-[320px] px-4 py-2
+    }
+
+    .formContainer {
+        @apply mt-8 border overflow-x-auto md:h-[350px] flex flex-col items-center border-solid pt-10 lg:h-[450px] max-sm:w-[300px] w-[400px] max-md:h-[320px] border-borderClr rounded-3xl bg-formBG backdrop-blur-0
     }
 }
 

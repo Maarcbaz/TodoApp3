@@ -5,8 +5,6 @@ const TodoList = () => {
 	return (
 		<div className="md:pt-4">
 			<Todoitem />
-			<Todoitem />
-			<Todoitem />
 		</div>
 	);
 };
