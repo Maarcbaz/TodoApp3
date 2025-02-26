@@ -1,67 +1,50 @@
-// C represent create
-// U represent use
-
 import React, { createContext, useContext, useState } from 'react';
-import Todoitem from './components/Todoitem';
+import { nanoid } from 'nanoid';
 
-// create contexts
+// C represents Create
 const Csubmit = createContext();
 const Ctodo = createContext();
 const CtodoChange = createContext();
 const CsetTodo = createContext();
+const CDel = createContext();
 const Ctodos = createContext();
-const CDelTodo = createContext();
-const CComplTodo = createContext();
+const Ccomplete = createContext();
 
-// use context
-export const Usubmit = () => {
-	return useContext(Csubmit);
-};
+// U represents Usecontext
+// this are arrow functions with return :)
+export const Usubmit = () => useContext(Csubmit);
+export const Utodo = () => useContext(Ctodo);
+export const UtodoChange = () => useContext(CtodoChange);
+export const UsetTodo = () => useContext(CsetTodo);
+export const Utodos = () => useContext(Ctodos);
+export const UDel = () => useContext(CDel);
+export const Ucomplete = () => useContext(Ccomplete);
 
-export const Utodo = () => {
-	return useContext(Ctodo);
-};
-
-export const UtodoChange = () => {
-	return useContext(CtodoChange);
-};
-
-export const UsetTodo = () => {
-	return useContext(CsetTodo);
-};
-export const Utodos = () => {
-	return useContext(Ctodos);
-};
-export const UDelTodo = () => {
-	return useContext(CDelTodo);
-};
-export const UComplTodo = () => {
-	return useContext(CComplTodo);
-};
 const AppContext = ({ children }) => {
-	const [todo, setTodo] = useState({ name: '', done: false });
+	const [todo, setTodo] = useState({ name: '', done: false, id: nanoid() });
 	const [todos, setTodos] = useState([]);
+
 	function handleTodoChange(e) {
-		setTodo({ ...todo, name: e.target.value });
+		setTodo({ ...todo, name: e.target.value, id: nanoid() });
 	}
+
 	function handlesubmit(event) {
 		event.preventDefault();
 		setTodos([...todos, todo]);
-		setTodo({ name: '', done: false });
-	}
-	function handleCompleted(items) {
-		const newTodo = todos.map((todo) =>
-			todo.name === items ? { ...todo, done: !todo.done } : todo
-		);
-		setTodos(newTodo);
+		setTodo({ name: '', done: false, id: nanoid() });
 	}
 
-	function handleDelete(item) {
-		console.log('This item has been deleted item', item.name);
-		const newTodo = todos.filter((todo) => {
-			todo !== item.name;
-		});
-		setTodos(newTodo);
+	function handleDel(item) {
+		// todo todo based on name
+		const newTodos = todos.filter((todo) => todo.id !== item.id);
+		setTodos(newTodos);
+	}
+
+	function handleComplete(item) {
+		const newTodos = todos.map((todo) =>
+			todo.id === item.id ? { ...todo, done: !todo.done } : todo
+		);
+		setTodos(newTodos);
 	}
 
 	return (
@@ -71,11 +54,11 @@ const AppContext = ({ children }) => {
 					<CtodoChange.Provider value={handleTodoChange}>
 						<CsetTodo.Provider value={setTodo}>
 							<Ctodos.Provider value={todos}>
-								<CComplTodo.Provider value={handleCompleted}>
-									<CDelTodo.Provider value={handleDelete}>
+								<CDel.Provider value={handleDel}>
+									<Ccomplete.Provider value={handleComplete}>
 										{children}
-									</CDelTodo.Provider>
-								</CComplTodo.Provider>
+									</Ccomplete.Provider>
+								</CDel.Provider>
 							</Ctodos.Provider>
 						</CsetTodo.Provider>
 					</CtodoChange.Provider>
