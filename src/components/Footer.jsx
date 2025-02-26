@@ -1,6 +1,9 @@
 import React from 'react';
+import { Utodos } from '../AppContext';
 
 const Footer = () => {
+	const total = Utodos();
+	// const totalTodo = total.length;
 	return (
 		// reusable styles are imported from the index.css file [footer,footertext]
 		<footer className="footer">

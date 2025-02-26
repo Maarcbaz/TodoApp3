@@ -12,11 +12,11 @@ const Form = () => {
 					<div className="relative">
 						<input
 							type="text"
-							onChange={handleTodoChange}
 							placeholder="Add a task..."
 							className="input"
 							required
-							value={todo}
+							value={todo.name}
+							onChange={handleTodoChange}
 						/>
 					</div>
 				</form>
