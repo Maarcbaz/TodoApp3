@@ -16,6 +16,12 @@ form {
     margin-inline: auto;
 }
 
+body {
+    background-image: linear-gradient(gray, rgba(0, 0, 0, 0.422), gray);
+    background-position: center;
+    background-size: cover;
+}
+
 @layer components {
     .footer {
         @apply fixed bottom-0 w-full text-white flex md:gap-5 md:py-4 items-center gap-4 py-2 justify-center max-md:flex-col bg-black
