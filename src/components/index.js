@@ -5,5 +5,5 @@ import Form from "./Form";
 export {
     Header,
     Footer,
-    Form
+    Form,
 }
